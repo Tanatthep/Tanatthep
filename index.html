@@ -1,35 +1,114 @@
 <html>
 <head>
-<title>Miniproject50</title>
+<title>Tanatthep</title>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://jabont.com/jayss/jayss.css">
+<link rel="stylesheet" type="text/css" href="http://jabont.com/jayss/jayss.css">
 <style>
 body,.ffont,h1,h2,h3,h4{
 font-family: 'Kanit', sans-serif !important;
 }
 </style>
 </head>
-<body class="bg-black">
-<sp class="xl"></sp>
+<body class="bg-blue-1">
+<sp class="l"></sp>
 <div class="cont-pd">
 
-<theboxes class="middle spacing-l">
+<theboxes class="middle spacing-M">
 <box col="6">
 <inner class="padding-l bg-white round shadow">
-<h1 class="cl-lightblue t-center">ผลลัพธ์</h1>
-<sp class="l"></sp>
-<h2 class="cl-lightblue-8">แนวนอน </h2>
+<h1 class="cl-lightblue t-center">Miniproject</h1>
+<sp class="M"></sp>
+<h2 class="cl-lightblue-8">Horizontal conflict </h2>
 <sp></sp>
-<h2 class="cl-lightblue-8">แนวตั้ง </h2>
+<h2 class="cl-lightblue-8">Vertical conflict </h2>
 <sp></sp>
-<h3 class="cl-lightblue-8">คำอธิบาย </h3>
-<p>edrfgyhjilplokihyrdesdrfgy okiuhytfrdftgyj plokjhgfdftghu okjihgfftgyhui oiuhtrtvbyn moinubyvtcvbyn oij8h765d45fg hminuytrcvtby ninurcvtybun minutrctvybn</p>
+<h2 class="cl-lightblue-8">code </h2>
+<h3 class="cl-red-8">import math<br>
+from math import sin, cos, sqrt, atan2<br>
+from sqlalchemy import create_engine<br>
+import pandas as pd<br>
+<sp></sp>
+def horizonConflict(lat1, lon1, lat2, lon2):<br>
+&emsp;# approximate radius of earth in km<br>
+&emsp;R = 6373.0<br>
+&emsp;# lat1 = radians(52.2296756)
+&emsp;# lon1 = radians(21.0122287)
+&emsp;# lat2 = radians(52.406374)
+&emsp;# lon2 = radians(16.9251681)<br>
+
+&emsp;dlon = lon2 - lon1<br>
+&emsp;dlat = lat2 - lat1<br>
+
+&emsp;a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2<br>
+&emsp;c = 2 * atan2(sqrt(a), sqrt(1 - a))<br>
+
+&emsp;distance = R * c<br>
+
+&emsp;# print("Result:", distance)
+&emsp;# print("Should be:", 278.546, "km")
+&emsp;return distance<br>
+
+
+def verticalConflict(baro1, baro2):<br>
+&emsp;dbaro = baro2 - baro1<br>
+&emsp;ads(dbaro)<br>
+&emsp;return dbaro<br>
+
+
+def main():<br>
+&emsp;num = 0<br>
+&emsp;vnum = 0<br>
+&emsp;df = pd.read_csv('D:\compro\day1.csv')<br>
+&emsp;df.dropna()<br>
+&emsp;time = df.time.unique()<br>
+&emsp;conflict = []<br>
+&emsp;for i in range(len(time)):<br>
+&emsp;&emsp;focus_row = df.loc[df['time'] == time[i]]<br>
+&emsp;&emsp;templat = focus_row["lat"].tolist()<br>
+&emsp;&emsp;templon = focus_row["lon"].tolist()<br>
+&emsp;&emsp;callsign = focus_row["callsign"].tolist()<br>
+
+&emsp;&emsp;#### Horizontal conflict<br>
+&emsp;&emsp;for j in range(len(templat)):<br>
+&emsp;&emsp;&emsp;for k in range(len(templat)):<br>
+&emsp;&emsp;&emsp;&emsp;if (j != k):<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;flat1 = templat[j]<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;flon1 = templon[j]<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;flat2 = templat[k]<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;flon2 = templon[k]<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;Hdist_km = horizonConflict(flat1, flon1, flat2, flon2)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;required = 3 * 1.852  # nmi  #1 nmi = 1.852 km<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;if Hdist_km < required:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;num += 1<br>
+&emsp;print("Horizontal is", num)<br></h3>
 </inner>
 </box>
 
 <box col="6">
 <inner class="padding-l bg-white round shadow">
+<h3 class="cl-red-8">&emsp;####Vertical conflict<br>
+&emsp;for i in range(len(time)):<br>
+&emsp;&emsp;focus_row = df.loc[df['time'] == time[i]]<br>
+&emsp;&emsp;tempH = focus_row["baroaltitude"].tolist()<br>
+&emsp;&emsp;callsign = focus_row["callsign"].tolist()<br>
+
+&emsp;&emsp;for l in range(len(tempH)):<br>
+&emsp;&emsp;&emsp;for m in range(len(tempH)):<br>
+&emsp;&emsp;&emsp;&emsp;if (l != m):<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;fbaro1 = tempH[l]<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;fbaro2 = tempH[m]<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;Vdist_ft = verticalConflict(fbaro1, fbaro2)<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;required1 = 1000 / 3280800  # ft   #1 ft  = 3280800 m<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;if Vdist_ft < required1:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;vnum += 1<br>
+&emsp;print("Vertical is", vnum)<br>
+<sp></sp>
+<sp></sp>
+if __name__ == '__main__':<br>
+&emsp;    main()</h3>
+<sp></sp>
+<sp></sp>
 <h3 class="cl-lightblue-8">Flow chart</h3>
 <sp></sp>
 <img src="http://placehold.it/600x600">
@@ -39,9 +118,9 @@ font-family: 'Kanit', sans-serif !important;
 <sp class="xl"></sp>
 </div>
 <sp></sp><sp></sp>
-<div class="padding-l cl-lightblue-4">
-<h1 class="cl-white- b5">ข้อมูลผู้จัดทำ</h1>
-<h4 class="cl-white- b5">ชื่อ นามสกุล</h4>
+<div class="padding-l cl-orange-4">
+<h1 class="cl-white- b5">Present by</h1>
+<h3 class="cl-white- b5">Tanatthep Jarawan 61130050</h3>
 </div>
 </body>
 </html>
