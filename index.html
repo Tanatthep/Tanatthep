@@ -52,7 +52,7 @@ def horizonConflict(lat1, lon1, lat2, lon2):<br>
 
 def verticalConflict(baro1, baro2):<br>
 &emsp;dbaro = baro2 - baro1<br>
-&emsp;ads(dbaro)<br>
+&emsp;abs(dbaro)<br>
 &emsp;return dbaro<br>
 
 
