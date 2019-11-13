@@ -1,126 +1,84 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Tanatthep</title>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://jabont.com/jayss/jayss.css">
-<style>
-body,.ffont,h1,h2,h3,h4{
-font-family: 'Kanit', sans-serif !important;
-}
-</style>
+    <title>Tanatthep🛫</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/emojipedia.2ab405dbfdfb.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow&display=swap" rel="stylesheet"> 
+
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .hero-image {
+          background-image: url("airplane1.jpg");
+          background-color: #F4F6F7;
+          height: 500px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          position: relative;
+        }
+
+        .hero-text {
+          text-align: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #F4F6F7;
+        }
+        .box{
+            background-color: #ecf0f1;
+            font-family: 'PT Sans Narrow', sans-serif;
+        }
+    </style>
 </head>
-<body class="bg-blue-1">
-<sp class="l"></sp>
-<div class="cont-pd">
+<body>
+    <div class="hero-image">
+    <div class="hero-text">
+    <h1 style="font-size:60px"><b>MINIPROJECT</b></h1>
+    <h3>Tanatthep Jarawan 61130050</h3>
+    </div>
+    </div>
 
-<theboxes class="middle spacing-M">
-<box col="6">
-<inner class="padding-l bg-white round shadow">
-<h1 class="cl-lightblue t-center">Miniproject</h1>
-<sp class="M"></sp>
-<h2 class="cl-lightblue-8">Horizontal conflict is 40636</h2>
-<sp></sp>
-<h2 class="cl-lightblue-8">Vertical conflict is 8183344</h2>
-<sp></sp>
-<h2 class="cl-lightblue-8">code </h2>
-<h3 class="cl-green-8">import math<br>
-from math import sin, cos, sqrt, atan2<br>
-from sqlalchemy import create_engine<br>
-import pandas as pd<br>
-<sp></sp>
-def horizonConflict(lat1, lon1, lat2, lon2):<br>
-&emsp;# approximate radius of earth in km<br>
-&emsp;R = 6373.0<br>
-&emsp;# lat1 = radians(52.2296756)
-&emsp;# lon1 = radians(21.0122287)
-&emsp;# lat2 = radians(52.406374)
-&emsp;# lon2 = radians(16.9251681)<br>
-
-&emsp;dlon = lon2 - lon1<br>
-&emsp;dlat = lat2 - lat1<br>
-
-&emsp;a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2<br>
-&emsp;c = 2 * atan2(sqrt(a), sqrt(1 - a))<br>
-
-&emsp;distance = R * c<br>
-
-&emsp;# print("Result:", distance)
-&emsp;# print("Should be:", 278.546, "km")
-&emsp;return distance<br>
-
-
-def verticalConflict(baro1, baro2):<br>
-&emsp;dbaro = baro2 - baro1<br>
-&emsp;abs(dbaro)<br>
-&emsp;return dbaro<br>
-
-
-def main():<br>
-&emsp;num = 0<br>
-&emsp;vnum = 0<br>
-&emsp;df = pd.read_csv('D:\compro\day1.csv')<br>
-&emsp;df.dropna()<br>
-&emsp;time = df.time.unique()<br>
-&emsp;conflict = []<br>
-&emsp;for i in range(len(time)):<br>
-&emsp;&emsp;focus_row = df.loc[df['time'] == time[i]]<br>
-&emsp;&emsp;templat = focus_row["lat"].tolist()<br>
-&emsp;&emsp;templon = focus_row["lon"].tolist()<br>
-&emsp;&emsp;callsign = focus_row["callsign"].tolist()<br>
-
-&emsp;&emsp;#### Horizontal conflict<br>
-&emsp;&emsp;for j in range(len(templat)):<br>
-&emsp;&emsp;&emsp;for k in range(len(templat)):<br>
-&emsp;&emsp;&emsp;&emsp;if (j != k):<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;flat1 = templat[j]<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;flon1 = templon[j]<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;flat2 = templat[k]<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;flon2 = templon[k]<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;Hdist_km = horizonConflict(flat1, flon1, flat2, flon2)<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;required = 3 * 1.852  # nmi  #1 nmi = 1.852 km<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;if Hdist_km < required:<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;num += 1<br>
-&emsp;print("Horizontal is", num)<br></h3>
-</inner>
-</box>
-
-<box col="6">
-<inner class="padding-l bg-white round shadow">
-<h3 class="cl-red-8">&emsp;####Vertical conflict<br>
-&emsp;for i in range(len(time)):<br>
-&emsp;&emsp;focus_row = df.loc[df['time'] == time[i]]<br>
-&emsp;&emsp;tempH = focus_row["baroaltitude"].tolist()<br>
-&emsp;&emsp;callsign = focus_row["callsign"].tolist()<br>
-
-&emsp;&emsp;for l in range(len(tempH)):<br>
-&emsp;&emsp;&emsp;for m in range(len(tempH)):<br>
-&emsp;&emsp;&emsp;&emsp;if (l != m):<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;fbaro1 = tempH[l]<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;fbaro2 = tempH[m]<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;Vdist_ft = verticalConflict(fbaro1, fbaro2)<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;required1 = 1000 / 3280800  # ft   #1 ft  = 3280800 m<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;if Vdist_ft < required1:<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;vnum += 1<br>
-&emsp;print("Vertical is", vnum)<br>
-<sp></sp>
-<sp></sp>
-if __name__ == '__main__':<br>
-&emsp;    main()</h3>
-<sp></sp>
-<sp></sp>
-<h3 class="cl-lightblue-8">Flow chart</h3>
-<sp></sp>
-<img src="img/flowchart.jpg">
-</inner>
-</box>
-</theboxes>
-<sp class="xl"></sp>
+    <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="index.html">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="code.html">CODE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="flowchart.html">FLOWCHART</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <div class="box">
+    <br>
+    <h3>Horizontal conflict is 31867</h3>
+    <h3>Vertical conflict is 9144357</h3>
+    <br>
+    </div>
+    <br>
+    <h5 class="card-title">Miniproject present by Tanatthep Jarawan</h5>
+    <h5 class="card-title">stdID : 61130050</h5>
+    <a href="https://www.facebook.com/profile.php?id=100001964057280" class="btn btn-primary">Tanatthep Jarawan</a>
+    <a href="https://github.com/Tanatthep/Tanatthep" class="btn btn-primary">GITHUB</a>
+  </div>
 </div>
-<sp></sp><sp></sp>
-<div class="padding-l cl-orange-4">
-<h1 class="cl-white- b5">Present by</h1>
-<h3 class="cl-white- b5">Tanatthep Jarawan 61130050</h3>
-</div>
+    
 </body>
 </html>
