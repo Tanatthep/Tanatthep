@@ -118,13 +118,21 @@
             &emsp;&emsp;callsign = focus_row["callsign"].tolist()<br>
 
             &emsp;&emsp;#### Horizontal conflict<br>
-            &emsp;&emsp;for j in range(len(templat)):<br>
-            &emsp;&emsp;&emsp;for k in range(len(templat)):<br>
+            &emsp;&emsp;for j in range(len(templat)) or range(len(tempH)):<br>
+            &emsp;&emsp;&emsp;for k in range(len(templat)) or range(len(tempH)):<br>
             &emsp;&emsp;&emsp;&emsp;if (j != k):<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;flat1 = templat[j]<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;flon1 = templon[j]<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;flat2 = templat[k]<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;flon2 = templon[k]<br>
+
+&emsp;&emsp;&emsp;&emsp;&emsp;fbaro1 = tempH[j]<br>
+
+&emsp;&emsp;&emsp;&emsp;&emsp;fbaro2 = tempH[k]<br>
+
+&emsp;&emsp;&emsp;&emsp;&emsp;Vdist_ft = verticalConflict(fbaro1, fbaro2)<br>
+
+&emsp;&emsp;&emsp;&emsp;&emsp;required1 = 1000 / 3.280800  # ft   #1 m  = 3.280800 ft<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;Hdist_km = horizonConflict(flat1, flon1, flat2, flon2)<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;required = 3 * 1.852  # nmi  #1 nmi = 1.852 km<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;if Hdist_km < required:<br>
@@ -144,7 +152,7 @@
             &emsp;&emsp;&emsp;&emsp;&emsp;fbaro1 = tempH[l]<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;fbaro2 = tempH[m]<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;Vdist_ft = verticalConflict(fbaro1, fbaro2)<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;required1 = 1000 / 3280800  # ft   #1 ft  = 3280800 m<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;required1 = 1000 / 3.280800  # ft   #1 m  = 3.280800 ft<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;if Vdist_ft < required1:<br>
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;vnum += 1<br>
             &emsp;print("Vertical is", vnum)<br>
